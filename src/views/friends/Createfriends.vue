@@ -37,32 +37,33 @@
  
 </template>
 <script>
-import { ref } from 'vue';
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router'
-import axios from 'axios'
+import { reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
 export default {
   setup() {
     const friend = reactive({
       nama: '',
       no_tlp: '',
-      alamat: ''
-    })
-    const validation = ref([])
-    const router = useRouter()
+      alamat: '',
+    });
+    const validation = ref([]);
+    const router = useRouter();
     function store(){
-      let nama = friend.nama
-      let no_tlp = friend.no_tlp
-      let alamat = friend.alamat
-       axios.post('http://pia.labirin.co.id/api/friends', {
+      let nama = friend.nama;
+      let no_tlp = friend.no_tlp;
+      let alamat = friend.alamat;
+      axios.post("http://127.0.0.1:8000/api/friends", {
         nama: nama,
         no_tlp: no_tlp,
-        alamat: alamat
-      }).then(() => {
+        alamat: alamat,
+      })
+      .then(() => {
         router.push({
-          name:'Home'
-        })
-      }).catch(error => {
+          name:'Home',
+        });
+      })
+      .catch(error => {
         console.log(error)
       })
     }
@@ -70,7 +71,7 @@ export default {
       friend,
       validation,
       router, 
-      store
+      store,
     }
   },
 }
